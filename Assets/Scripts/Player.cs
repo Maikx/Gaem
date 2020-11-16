@@ -42,10 +42,25 @@ public class Player : MonoBehaviour
 
     public void CheckStatus()
     {
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             anim.SetBool("isWalkingForward", true);
         else
             anim.SetBool("isWalkingForward", false);
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            anim.SetBool("isWalkingLeft", true);
+        else
+            anim.SetBool("isWalkingLeft", false);
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            anim.SetBool("isWalkingRight", true);
+        else
+            anim.SetBool("isWalkingRight", false);
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            anim.SetBool("isWalkingBack", true);
+        else
+            anim.SetBool("isWalkingBack", false);
+
     }
     void Boundaries()
     {
