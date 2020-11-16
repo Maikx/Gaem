@@ -23,12 +23,15 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        HandleMovement(horizontal);
+        float vertical =   Input.GetAxis("Vertical");
+        HandleMovement(horizontal,vertical);
+        HandleMovement(horizontal, vertical);
     }
 
-    void HandleMovement(float horizontal)
+    void HandleMovement(float horizontal, float vertical)
     {
         rB.velocity = new Vector2 (horizontal * movementSpeed, rB.velocity.y);
+        rB.velocity = new Vector2 (rB.velocity.x,vertical * movementSpeed);
     }
 
     public void CheckStatus()
