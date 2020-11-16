@@ -7,6 +7,11 @@ public class Player : MonoBehaviour
     static Animator anim;
     private Rigidbody2D rB;
     public float movementSpeed;
+    public bool isGrounded;
+    public GameObject highPoint;
+    public GameObject lowPoint;
+    public GameObject leftPoint;
+    public GameObject rightPoint;
 
     void Start()
     {
@@ -18,6 +23,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         CheckStatus();
+        Boundaries();
     }
 
     void FixedUpdate()
@@ -40,5 +46,24 @@ public class Player : MonoBehaviour
             anim.SetBool("isWalkingForward", true);
         else
             anim.SetBool("isWalkingForward", false);
+    }
+    void Boundaries()
+    {
+        if (transform.position.y > highPoint.transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, highPoint.transform.position.y, transform.position.z);
+        }
+        if (transform.position.y < lowPoint.transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, lowPoint.transform.position.y, transform.position.z);
+        }
+        if (transform.position.x < leftPoint.transform.position.x)
+        {
+            transform.position = new Vector3(leftPoint.transform.position.x, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > rightPoint.transform.position.x)
+        {
+            transform.position = new Vector3(rightPoint.transform.position.x, transform.position.y, transform.position.z);
+        }
     }
 }
