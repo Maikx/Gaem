@@ -866,6 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staraptor_Sprite: {fileID: -7145424467197902211, guid: 0a89c47bc413eb741939bb3246bb775d,
     type: 3}
+  animStaraptor: {fileID: 9100000, guid: a441395e45413d542b8885fe05b1ce62, type: 2}
   animPredator: {fileID: 0}
   predator_Sprite: {fileID: 0}
   startTimeBtwAttack: 0.3
@@ -875,9 +876,11 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 256
-  movementSpeed: 5
   health: 100
   character: 2
+  movementSpeed: 5
+  playerHigh: 0.5
+  playerLow: -4
 --- !u!50 &1304960281
 Rigidbody2D:
   serializedVersion: 4
@@ -916,8 +919,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.5, y: 7.5}
-    newSize: {x: 7.5, y: 7.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -935,7 +938,7 @@ Animator:
   m_GameObject: {fileID: 1304960278}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a441395e45413d542b8885fe05b1ce62, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -988,7 +991,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.5, y: 7.5}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
