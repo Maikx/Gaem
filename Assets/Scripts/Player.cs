@@ -7,9 +7,21 @@ public class Player : MonoBehaviour
     static Animator animStaraptor;
     private Rigidbody2D rB;
     private GameManager gm;
-    public float movementSpeed;
     private GameObject highPoint_GO;
     private GameObject lowPoint_GO;
+
+    private float timeBtwAttack;
+    public float startTimeBtwAttack;
+    public Transform attackPos;
+    public float attackRange;
+    public int damage;
+    public LayerMask whatIsEnemies;
+
+
+    public float movementSpeed;
+    //public int meleeDamage;
+    //public float meleeRange;
+    public float health;
 
 
     public int character;
@@ -31,6 +43,7 @@ public class Player : MonoBehaviour
     {
         CheckStatus();
         Boundaries();
+        Attack();
     }
 
     void FixedUpdate()
@@ -82,6 +95,41 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, lowPoint_GO.transform.position.y, transform.position.z);
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Debug.Log("Dead");
+        }
+    }
+
+    public void Attack()
+    {
+        if(timeBtwAttack <= 0)
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                for (int i = 0; i < enemiesToDamage.Length; i++)
+                {
+                    enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                }
+            }
+            timeBtwAttack = startTimeBtwAttack;
+        }
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
     void OnCollisionEnter2D(Collision2D col)
