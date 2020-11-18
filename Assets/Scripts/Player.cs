@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
     static Animator animStaraptor;
     private Rigidbody2D rB;
     private GameManager gm;
-    private GameObject highPoint_GO;
-    private GameObject lowPoint_GO;
+    private Animator sword;
 
     private float timeBtwAttack;
     public float startTimeBtwAttack;
+
     public Transform attackPos;
     public float attackRange;
     public int damage;
@@ -33,9 +33,8 @@ public class Player : MonoBehaviour
         
         if(character == 2)animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        sword = GameObject.Find("AttackPos").GetComponent<Animator>();
         rB = GetComponent<Rigidbody2D>();
-        highPoint_GO = GameObject.Find("High");
-        lowPoint_GO = GameObject.Find("Low");
     }
 
     // Update is called once per frame
@@ -87,13 +86,13 @@ public class Player : MonoBehaviour
 
     void Boundaries()
     {
-        if (transform.position.y > highPoint_GO.transform.position.y)
+        if (transform.position.y > 0.5f)
         {
-            transform.position = new Vector3(transform.position.x, highPoint_GO.transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
         }
-        if (transform.position.y < lowPoint_GO.transform.position.y)
+        if (transform.position.y < -4)
         {
-            transform.position = new Vector3(transform.position.x, lowPoint_GO.transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -4, transform.position.z);
         }
     }
 
@@ -112,6 +111,8 @@ public class Player : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Space))
             {
+                sword.SetTrigger("isAttacking");
+
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
@@ -125,6 +126,7 @@ public class Player : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
     }
+
 
     void OnDrawGizmosSelected()
     {
