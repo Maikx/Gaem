@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    static Animator animStaraptor;
+    private Animator currentAnimator;
+    private SpriteRenderer spriterenderer;
+    public Sprite staraptor_Sprite;
+    public Animator animPredator;
+    public Sprite predator_Sprite;
     private Rigidbody2D rB;
     private GameManager gm;
     private GameObject highPoint_GO;
@@ -16,13 +20,13 @@ public class Player : MonoBehaviour
     public float attackRange;
     public int damage;
     public LayerMask whatIsEnemies;
-
-
+    
+    //public Animator vet[4];
+    //public Animator[] vet = new Animator[4];
     public float movementSpeed;
     //public int meleeDamage;
     //public float meleeRange;
     public float health;
-
 
     public int character;
 
@@ -30,8 +34,17 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
-        if(character == 2)animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
+
+        //if(character == 2)
+        currentAnimator = GetComponent<Animator>();
+        spriterenderer = GetComponent<SpriteRenderer>();
+        if (character == 2)
+        {
+            spriterenderer.sprite = staraptor_Sprite;
+            
+        }
+            
+        //vet[1]=animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
         highPoint_GO = GameObject.Find("High");
@@ -41,11 +54,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckStatus();
-        Boundaries();
+       // CheckStatus();
+        //Boundaries();
         Attack();
     }
-
+    int PickCharacter()
+    {
+        character = 1;
+        return character;
+    }
     void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -60,31 +77,33 @@ public class Player : MonoBehaviour
         rB.velocity = new Vector2(rB.velocity.x, vertical * movementSpeed);
     }
 
-    public void CheckStatus()
+    /*public void CheckStatus()
     {
-        if (character == 2)
-        {
+        int pos = PickCharacter();
+        staraptor_GO.SetActive(true);
+        //if (character == 2)
+        //{
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                animStaraptor.SetBool("isWalkingForward", true);
+                vet[pos].SetBool("isWalkingForward", true);
             else
-                animStaraptor.SetBool("isWalkingForward", false);
+                vet[pos].SetBool("isWalkingForward", false);
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                animStaraptor.SetBool("isWalkingLeft", true);
+                vet[pos].SetBool("isWalkingLeft", true);
             else
-                animStaraptor.SetBool("isWalkingLeft", false);
+                vet[pos].SetBool("isWalkingLeft", false);
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                animStaraptor.SetBool("isWalkingRight", true);
+                vet[pos].SetBool("isWalkingRight", true);
             else
-                animStaraptor.SetBool("isWalkingRight", false);
+                vet[pos].SetBool("isWalkingRight", false);
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                animStaraptor.SetBool("isWalkingBack", true);
+                vet[pos].SetBool("isWalkingBack", true);
             else
-                animStaraptor.SetBool("isWalkingBack", false);
-        }
+                vet[pos].SetBool("isWalkingBack", false);
+        //}
     }
-
+    */
     void Boundaries()
     {
         if (transform.position.y > highPoint_GO.transform.position.y)
