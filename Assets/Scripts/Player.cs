@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
     private GameManager gm;
     private Animator sword;
 
-    private float timeBtwAttack;
+    public float timeBtwAttack;
     public float startTimeBtwAttack;
+    public bool isAttacking;
 
     public Transform attackPos;
     public float attackRange;
@@ -107,11 +108,12 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        if(timeBtwAttack <= 0)
+        if (isAttacking == false)
         {
             if(Input.GetKey(KeyCode.Space))
             {
                 sword.SetTrigger("isAttacking");
+                isAttacking = true;
 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
@@ -119,11 +121,16 @@ public class Player : MonoBehaviour
                     enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
                 }
             }
-            timeBtwAttack = startTimeBtwAttack;
         }
-        else
+        
+        if(isAttacking == true)
         {
             timeBtwAttack -= Time.deltaTime;
+            if(timeBtwAttack <= 0)
+            {
+                timeBtwAttack = startTimeBtwAttack;
+                isAttacking = false;
+            }
         }
     }
 
