@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     private Animator animPlayer;
     private SpriteRenderer sR;
     private Rigidbody2D rB;
-    private Animator sword;
+    public Animator[] sword;
+
 
     public Sprite[] current_Sprite;
     public RuntimeAnimatorController[] animCurrent;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     private float timeBtwAttack;
     public float startTimeBtwAttack;
     public bool isAttacking;
-    public Transform attackPos;
+    public Transform[] attackPos;
     public float attackRange;
     public int damage;
     public LayerMask whatIsEnemies;
@@ -37,12 +38,13 @@ public class Player : MonoBehaviour
     public bool willIdleR;
     public bool isMoving;
 
+    public float forwardAttackY = -3.5f;
+
     //0 = Knight, 1 = Predator, 2 = Staraptor, 3 = Mystic, 4 = Fox
 
     void Start()
     {
         animPlayer = GetComponent<Animator>();
-        sword = GameObject.Find("Player_Attack").GetComponent<Animator>();
         sR = GetComponent<SpriteRenderer>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
@@ -227,13 +229,48 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                sword.SetTrigger("isAttacking");
-                isAttacking = true;
-
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                if (willIdleB == false && willIdleL == false && willIdleR == false)
                 {
-                    enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                    sword[0].SetTrigger("isAttacking");
+                    isAttacking = true;
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[0].position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                    }
+                }
+
+                if (willIdleB == true && willIdleL == false && willIdleR == false)
+                {
+                    sword[1].SetTrigger("isAttacking");
+                    isAttacking = true;
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[1].position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                    }
+                }
+
+                if (willIdleB == false && willIdleL == true && willIdleR == false)
+                {
+                    sword[2].SetTrigger("isAttacking");
+                    isAttacking = true;
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[2].position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                    }
+                }
+
+                if (willIdleB == false && willIdleL == false && willIdleR == true)
+                {
+                    sword[3].SetTrigger("isAttacking");
+                    isAttacking = true;
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[2].position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
+                    }
                 }
             }
         }
@@ -252,7 +289,11 @@ public class Player : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.DrawWireSphere(attackPos[0].position, attackRange);
+        Gizmos.DrawWireSphere(attackPos[1].position, attackRange);
+        Gizmos.DrawWireSphere(attackPos[2].position, attackRange);
+        Gizmos.DrawWireSphere(attackPos[3].position, attackRange);
+        
     }
 
     void OnCollisionEnter2D(Collision2D col)
