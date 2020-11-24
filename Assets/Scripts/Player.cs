@@ -51,7 +51,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckStatus();
+        CheckAnimation();
+        CheckDirection();
         Boundaries();
         PickCharacter();
         Attack();
@@ -105,15 +106,48 @@ public class Player : MonoBehaviour
         rB.velocity = new Vector2(rB.velocity.x, vertical * movementSpeed);
     }
 
-    public void CheckStatus()
+    void CheckDirection()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            willIdleL = true;
+            willIdleR = false;
+            willIdleB = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            willIdleR = true;
+            willIdleL = false;
+            willIdleB = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            willIdleB = true;
+            willIdleL = false;
+            willIdleR = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            willIdleB = false;
+            willIdleL = false;
+            willIdleR = false;
+        }
+
+            if (horizontal != 0 || vertical != 0)
+            isMoving = true;
+        else
+            isMoving = false;
+    }
+
+    public void CheckAnimation()
     {
         
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 animPlayer.SetBool("isWalkingForward", true);
-                willIdleB = false;
-                willIdleR = false;
-                willIdleL = false;
             }
             else
             {
@@ -123,9 +157,6 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 animPlayer.SetBool("isWalkingLeft", true);
-                willIdleB = false;
-                willIdleR = false;
-                willIdleL = true;
             }
             else
             {
@@ -135,9 +166,6 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 animPlayer.SetBool("isWalkingRight", true);
-                willIdleB = false;
-                willIdleR = true;
-                willIdleL = false;
             }
             else
             {
@@ -147,9 +175,6 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 animPlayer.SetBool("isWalkingBack", true);
-                willIdleB = true;
-                willIdleR = false;
-                willIdleL = false;
             }
             else
             {
@@ -173,15 +198,6 @@ public class Player : MonoBehaviour
 
             else
             animPlayer.SetBool("isIdleBack", false);
-
-            if (horizontal != 0 || vertical != 0)
-            {
-            isMoving = true;
-            }
-            else
-            {
-            isMoving = false;
-            }
     }
     
     void Boundaries()
