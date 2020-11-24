@@ -4,47 +4,97 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    static Animator animStaraptor;
+    private Animator animPlayer;
+    private SpriteRenderer sR;
     private Rigidbody2D rB;
+
+    public Sprite staraptor_Sprite;
+    public RuntimeAnimatorController animStaraptor;
+
+    public Animator animPredator;
+    public Sprite predator_Sprite;
+
     private GameManager gm;
-    private Animator sword;
 
-    public float timeBtwAttack;
+    private float timeBtwAttack;
     public float startTimeBtwAttack;
-    public bool isAttacking;
-
     public Transform attackPos;
     public float attackRange;
     public int damage;
     public LayerMask whatIsEnemies;
+    
+    //public Animator vet[4];
+    //public Animator[] vet = new Animator[4];
 
-
+    public float health;
+    public int character;
     public float movementSpeed;
+
+    public float playerHigh;
+    public float playerLow;
+
+    //cose già aggiunte..
+
     //public int meleeDamage;
     //public float meleeRange;
-    public float health;
-
-
-    public int character;
 
     //0 = Knight, 1 = Predator, 2 = Staraptor, 3 = Mystic, 4 = Fox
 
     void Start()
     {
-        
-        if(character == 2)animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
+        animPlayer = GetComponent<Animator>();
+        sR = GetComponent<SpriteRenderer>();
+        //vet[1]=animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        sword = GameObject.Find("AttackPos").GetComponent<Animator>();
         rB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckStatus();
+        // CheckStatus();
         Boundaries();
+        PickCharacter();
         Attack();
     }
+
+    void PickCharacter()
+    {
+        if (character == 0)
+        {
+            //knight
+        }
+
+        if (character == 1)
+        {
+            //predator
+        }
+
+        if (character == 2)
+        {
+            sR.sprite = staraptor_Sprite;
+            animPlayer.runtimeAnimatorController = animStaraptor;
+        }
+
+        if (character == 3)
+        {
+            //mystic
+        }
+
+        if (character == 4)
+        {
+            //fox
+        }
+
+    }
+
+
+    //int PickCharacter()
+    //{
+        //character = 2;
+        //return character;
+    //}
+
 
     void FixedUpdate()
     {
@@ -62,38 +112,43 @@ public class Player : MonoBehaviour
 
     public void CheckStatus()
     {
+        //int pos = PickCharacter();
+
+
+
+
         if (character == 2)
         {
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                animStaraptor.SetBool("isWalkingForward", true);
-            else
-                animStaraptor.SetBool("isWalkingForward", false);
+            //if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                //vet[pos].SetBool("isWalkingForward", true);
+            //else
+                //vet[pos].SetBool("isWalkingForward", false);
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                animStaraptor.SetBool("isWalkingLeft", true);
-            else
-                animStaraptor.SetBool("isWalkingLeft", false);
+            //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                //vet[pos].SetBool("isWalkingLeft", true);
+            //else
+                //vet[pos].SetBool("isWalkingLeft", false);
 
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                animStaraptor.SetBool("isWalkingRight", true);
-            else
-                animStaraptor.SetBool("isWalkingRight", false);
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                animStaraptor.SetBool("isWalkingBack", true);
-            else
-                animStaraptor.SetBool("isWalkingBack", false);
+            //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                //vet[pos].SetBool("isWalkingRight", true);
+            //else
+                //vet[pos].SetBool("isWalkingRight", false);
+            //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                //vet[pos].SetBool("isWalkingBack", true);
+            //else
+                //vet[pos].SetBool("isWalkingBack", false);
         }
     }
-
+    
     void Boundaries()
     {
-        if (transform.position.y > 0.5f)
+        if (transform.position.y > playerHigh)
         {
-            transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, playerHigh, transform.position.z);
         }
-        if (transform.position.y < -4)
+        if (transform.position.y < playerLow)
         {
-            transform.position = new Vector3(transform.position.x, -4, transform.position.z);
+            transform.position = new Vector3(transform.position.x, playerLow, transform.position.z);
         }
     }
 
@@ -108,32 +163,23 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttacking == false)
+        if(timeBtwAttack <= 0)
         {
             if(Input.GetKey(KeyCode.Space))
             {
-                sword.SetTrigger("isAttacking");
-                isAttacking = true;
-
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
                 }
             }
+            timeBtwAttack = startTimeBtwAttack;
         }
-        
-        if(isAttacking == true)
+        else
         {
             timeBtwAttack -= Time.deltaTime;
-            if(timeBtwAttack <= 0)
-            {
-                timeBtwAttack = startTimeBtwAttack;
-                isAttacking = false;
-            }
         }
     }
-
 
     void OnDrawGizmosSelected()
     {
