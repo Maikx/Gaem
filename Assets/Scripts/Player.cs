@@ -29,6 +29,14 @@ public class Player : MonoBehaviour
     public float playerHigh;
     public float playerLow;
 
+    public float horizontal;
+    public float vertical;
+
+    public bool willIdleB;
+    public bool willIdleL;
+    public bool willIdleR;
+    public bool isMoving;
+
     //0 = Knight, 1 = Predator, 2 = Staraptor, 3 = Mystic, 4 = Fox
 
     void Start()
@@ -85,8 +93,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
         HandleMovement(horizontal, vertical);
         HandleMovement(horizontal, vertical);
     }
@@ -99,27 +107,81 @@ public class Player : MonoBehaviour
 
     public void CheckStatus()
     {
-        if (character == 2)
-        {
+        
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
                 animPlayer.SetBool("isWalkingForward", true);
+                willIdleB = false;
+                willIdleR = false;
+                willIdleL = false;
+            }
             else
+            {
                 animPlayer.SetBool("isWalkingForward", false);
+            }
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
                 animPlayer.SetBool("isWalkingLeft", true);
+                willIdleB = false;
+                willIdleR = false;
+                willIdleL = true;
+            }
             else
+            {
                 animPlayer.SetBool("isWalkingLeft", false);
+            }
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
                 animPlayer.SetBool("isWalkingRight", true);
+                willIdleB = false;
+                willIdleR = true;
+                willIdleL = false;
+            }
             else
+            {
                 animPlayer.SetBool("isWalkingRight", false);
+            }
+
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
                 animPlayer.SetBool("isWalkingBack", true);
+                willIdleB = true;
+                willIdleR = false;
+                willIdleL = false;
+            }
             else
+            {
                 animPlayer.SetBool("isWalkingBack", false);
-        }
+            }
+
+            if(isMoving == false && willIdleL == true)
+            animPlayer.SetBool("isIdleLeft", true);
+
+            else
+            animPlayer.SetBool("isIdleLeft", false);
+
+            if (isMoving == false && willIdleR == true)
+            animPlayer.SetBool("isIdleRight", true);
+
+            else
+            animPlayer.SetBool("isIdleRight", false);
+
+            if (isMoving == false && willIdleB == true)
+            animPlayer.SetBool("isIdleBack", true);
+
+            else
+            animPlayer.SetBool("isIdleBack", false);
+
+            if (horizontal != 0 || vertical != 0)
+            {
+            isMoving = true;
+            }
+            else
+            {
+            isMoving = false;
+            }
     }
     
     void Boundaries()

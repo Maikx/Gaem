@@ -1208,6 +1208,12 @@ MonoBehaviour:
   movementSpeed: 5
   playerHigh: 0.5
   playerLow: -4
+  horizontal: 0
+  vertical: 0
+  willIdleB: 0
+  willIdleL: 0
+  willIdleR: 0
+  isMoving: 0
 --- !u!50 &1304960281
 Rigidbody2D:
   serializedVersion: 4
