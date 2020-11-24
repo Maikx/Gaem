@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Animator animPlayer;
     private SpriteRenderer sR;
     private Rigidbody2D rB;
+    private Animator sword;
 
     public Sprite[] current_Sprite;
     public RuntimeAnimatorController[] animCurrent;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     private float timeBtwAttack;
     public float startTimeBtwAttack;
+    public bool isAttacking;
     public Transform attackPos;
     public float attackRange;
     public int damage;
@@ -27,16 +29,12 @@ public class Player : MonoBehaviour
     public float playerHigh;
     public float playerLow;
 
-    //cose già aggiunte..
-
-    //public int meleeDamage;
-    //public float meleeRange;
-
     //0 = Knight, 1 = Predator, 2 = Staraptor, 3 = Mystic, 4 = Fox
 
     void Start()
     {
         animPlayer = GetComponent<Animator>();
+        sword = GameObject.Find("Player_Attack").GetComponent<Animator>();
         sR = GetComponent<SpriteRenderer>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
@@ -147,21 +145,29 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        if(timeBtwAttack <= 0)
+        if (isAttacking == false)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
+                sword.SetTrigger("isAttacking");
+                isAttacking = true;
+
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
                 }
             }
-            timeBtwAttack = startTimeBtwAttack;
         }
-        else
+
+        if (isAttacking == true)
         {
             timeBtwAttack -= Time.deltaTime;
+            if (timeBtwAttack <= 0)
+            {
+                timeBtwAttack = startTimeBtwAttack;
+                isAttacking = false;
+            }
         }
     }
 
