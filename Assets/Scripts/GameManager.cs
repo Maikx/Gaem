@@ -44,22 +44,22 @@ public class GameManager : MonoBehaviour
         {
             if (current_scene == 1)
             {
-                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x - 30, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
-                player_GO.transform.position = new Vector3(player_GO.transform.position.x - 10.5f, player_GO.transform.position.y, player_GO.transform.position.z);
-                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x - 30, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
+                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x - 19.2f, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
+                player_GO.transform.position = new Vector3(player_GO.transform.position.x - 2.5f, player_GO.transform.position.y, player_GO.transform.position.z);
+                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x - 19.2f, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
             }
             if(current_scene == -1)
             {
-                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x +30, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
-                player_GO.transform.position = new Vector3(player_GO.transform.position.x + 10.5f, player_GO.transform.position.y, player_GO.transform.position.z);
-                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x + 30, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
+                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x +19.2f, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
+                player_GO.transform.position = new Vector3(player_GO.transform.position.x + 2.5f, player_GO.transform.position.y, player_GO.transform.position.z);
+                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x + 19.2f, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
             }
         }
         else
         {
-                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x + 30 * scene_number, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
-                player_GO.transform.position = new Vector3(player_GO.transform.position.x + 10.5f * scene_number, player_GO.transform.position.y, player_GO.transform.position.z);
-                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x + 30 * scene_number, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
+                boundaries_GO.transform.position = new Vector3(boundaries_GO.transform.position.x + 19.2f * scene_number, boundaries_GO.transform.position.y, boundaries_GO.transform.position.z);
+                player_GO.transform.position = new Vector3(player_GO.transform.position.x + 2.5f * scene_number, player_GO.transform.position.y, player_GO.transform.position.z);
+                viewPoint_GO.transform.position = new Vector3(viewPoint_GO.transform.position.x + 19.2f * scene_number, viewPoint_GO.transform.position.y, viewPoint_GO.transform.position.z);
         }
     }
 }

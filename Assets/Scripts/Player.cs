@@ -8,11 +8,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer sR;
     private Rigidbody2D rB;
 
-    public Sprite staraptor_Sprite;
-    public RuntimeAnimatorController animStaraptor;
-
-    public Animator animPredator;
-    public Sprite predator_Sprite;
+    public Sprite[] current_Sprite;
+    public RuntimeAnimatorController[] animCurrent;
 
     private GameManager gm;
 
@@ -22,9 +19,6 @@ public class Player : MonoBehaviour
     public float attackRange;
     public int damage;
     public LayerMask whatIsEnemies;
-    
-    //public Animator vet[4];
-    //public Animator[] vet = new Animator[4];
 
     public float health;
     public int character;
@@ -43,8 +37,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         animPlayer = GetComponent<Animator>();
-        sR = GetComponent<SpriteRenderer>();
-        //vet[1]=animStaraptor = GameObject.Find("Staraptor").GetComponent<Animator>(); 
+        sR = GetComponent<SpriteRenderer>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
     }
@@ -52,7 +45,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // CheckStatus();
+        CheckStatus();
         Boundaries();
         PickCharacter();
         Attack();
@@ -62,39 +55,35 @@ public class Player : MonoBehaviour
     {
         if (character == 0)
         {
-            //knight
+            sR.sprite = current_Sprite[0];
+            animPlayer.runtimeAnimatorController = animCurrent[0];
         }
 
         if (character == 1)
         {
-            //predator
+            sR.sprite = current_Sprite[1];
+            animPlayer.runtimeAnimatorController = animCurrent[1];
         }
 
         if (character == 2)
         {
-            sR.sprite = staraptor_Sprite;
-            animPlayer.runtimeAnimatorController = animStaraptor;
+            sR.sprite = current_Sprite[2];
+            animPlayer.runtimeAnimatorController = animCurrent[2];
         }
 
         if (character == 3)
         {
-            //mystic
+            sR.sprite = current_Sprite[3];
+            animPlayer.runtimeAnimatorController = animCurrent[3];
         }
 
         if (character == 4)
         {
-            //fox
+            sR.sprite = current_Sprite[4];
+            animPlayer.runtimeAnimatorController = animCurrent[4];
         }
 
     }
-
-
-    //int PickCharacter()
-    //{
-        //character = 2;
-        //return character;
-    //}
-
 
     void FixedUpdate()
     {
@@ -112,31 +101,26 @@ public class Player : MonoBehaviour
 
     public void CheckStatus()
     {
-        //int pos = PickCharacter();
-
-
-
-
         if (character == 2)
         {
-            //if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                //vet[pos].SetBool("isWalkingForward", true);
-            //else
-                //vet[pos].SetBool("isWalkingForward", false);
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                animPlayer.SetBool("isWalkingForward", true);
+            else
+                animPlayer.SetBool("isWalkingForward", false);
 
-            //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                //vet[pos].SetBool("isWalkingLeft", true);
-            //else
-                //vet[pos].SetBool("isWalkingLeft", false);
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                animPlayer.SetBool("isWalkingLeft", true);
+            else
+                animPlayer.SetBool("isWalkingLeft", false);
 
-            //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                //vet[pos].SetBool("isWalkingRight", true);
-            //else
-                //vet[pos].SetBool("isWalkingRight", false);
-            //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                //vet[pos].SetBool("isWalkingBack", true);
-            //else
-                //vet[pos].SetBool("isWalkingBack", false);
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                animPlayer.SetBool("isWalkingRight", true);
+            else
+                animPlayer.SetBool("isWalkingRight", false);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                animPlayer.SetBool("isWalkingBack", true);
+            else
+                animPlayer.SetBool("isWalkingBack", false);
         }
     }
     
