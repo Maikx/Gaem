@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
                 {
                     sword[3].SetTrigger("isAttacking");
                     isAttacking = true;
-                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[2].position, attackRange, whatIsEnemies);
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[3].position, attackRange, whatIsEnemies);
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
                         enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);

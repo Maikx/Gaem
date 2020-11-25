@@ -15,32 +15,40 @@ public class Greed_Enemy : MonoBehaviour
     private Transform size;
     private Transform target;
     
-    static Animator animGreed;
+    //static Animator animGreed;
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        animGreed = GetComponentInChildren<Animator>();
+        //animGreed = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckForPlayer();
         ChasePlayer();
         CheckIfDead();
     }
 
+    void CheckForPlayer()
+    {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+    }
+
     void ChasePlayer()
     {
-        if (Vector2.Distance(transform.position, target.position) > attackRange)
+        if (Vector3.Distance(transform.position, target.position) > attackRange)
         {
-            animGreed.SetBool("isWalking", true);
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            //animGreed.SetBool("isWalking", true);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
         else
         {
             AttackPlayer();
-            animGreed.SetBool("isWalking", false);
+            //animGreed.SetBool("isWalking", false);
         }
 
         if(target.position.x < transform.position.x)
