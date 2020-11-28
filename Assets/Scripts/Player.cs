@@ -217,7 +217,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        animPlayer.SetTrigger("isHurt");
+        if (health <= 0)
         {
             Debug.Log("Dead");
         }
