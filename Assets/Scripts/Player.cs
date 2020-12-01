@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rB;
     public Animator[] sword;
 
-
-    public Sprite[] current_Sprite;
     public RuntimeAnimatorController[] animCurrent;
 
     private GameManager gm;
@@ -33,7 +31,6 @@ public class Player : MonoBehaviour
     public float horizontal;
     public float vertical;
 
-    public bool willIdleB;
     public bool willIdleL;
     public bool willIdleR;
     public bool isMoving;
@@ -48,6 +45,7 @@ public class Player : MonoBehaviour
         sR = GetComponent<SpriteRenderer>(); 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
+        willIdleR = true;
     }
 
     // Update is called once per frame
@@ -64,31 +62,26 @@ public class Player : MonoBehaviour
     {
         if (character == 0)
         {
-            sR.sprite = current_Sprite[0];
             animPlayer.runtimeAnimatorController = animCurrent[0];
         }
 
         if (character == 1)
         {
-            sR.sprite = current_Sprite[1];
             animPlayer.runtimeAnimatorController = animCurrent[1];
         }
 
         if (character == 2)
         {
-            sR.sprite = current_Sprite[2];
             animPlayer.runtimeAnimatorController = animCurrent[2];
         }
 
         if (character == 3)
         {
-            sR.sprite = current_Sprite[3];
             animPlayer.runtimeAnimatorController = animCurrent[3];
         }
 
         if (character == 4)
         {
-            sR.sprite = current_Sprite[4];
             animPlayer.runtimeAnimatorController = animCurrent[4];
         }
 
@@ -114,28 +107,12 @@ public class Player : MonoBehaviour
         {
             willIdleL = true;
             willIdleR = false;
-            willIdleB = false;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             willIdleR = true;
             willIdleL = false;
-            willIdleB = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            willIdleB = true;
-            willIdleL = false;
-            willIdleR = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            willIdleB = false;
-            willIdleL = false;
-            willIdleR = false;
         }
 
             if (horizontal != 0 || vertical != 0)
@@ -146,16 +123,6 @@ public class Player : MonoBehaviour
 
     public void CheckAnimation()
     {
-        
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            {
-                animPlayer.SetBool("isWalkingForward", true);
-            }
-            else
-            {
-                animPlayer.SetBool("isWalkingForward", false);
-            }
-
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 animPlayer.SetBool("isWalkingLeft", true);
@@ -174,20 +141,14 @@ public class Player : MonoBehaviour
                 animPlayer.SetBool("isWalkingRight", false);
             }
 
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                animPlayer.SetBool("isWalkingBack", true);
-            }
-            else
-            {
-                animPlayer.SetBool("isWalkingBack", false);
-            }
-
             if(isMoving == false && willIdleL == true)
             animPlayer.SetBool("isIdleLeft", true);
 
             else
             animPlayer.SetBool("isIdleLeft", false);
+
+            if (isMoving == true && willIdleL == true)
+            animPlayer.SetBool("isWalkingLeft", true);
 
             if (isMoving == false && willIdleR == true)
             animPlayer.SetBool("isIdleRight", true);
@@ -195,11 +156,8 @@ public class Player : MonoBehaviour
             else
             animPlayer.SetBool("isIdleRight", false);
 
-            if (isMoving == false && willIdleB == true)
-            animPlayer.SetBool("isIdleBack", true);
-
-            else
-            animPlayer.SetBool("isIdleBack", false);
+            if (isMoving == true && willIdleR == true)
+            animPlayer.SetBool("isWalkingRight", true);
     }
     
     void Boundaries()
@@ -230,7 +188,10 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                if (willIdleB == false && willIdleL == false && willIdleR == false)
+
+
+
+                if (willIdleL == true && willIdleR == false)
                 {
                     sword[0].SetTrigger("isAttacking");
                     isAttacking = true;
@@ -241,33 +202,11 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                if (willIdleB == true && willIdleL == false && willIdleR == false)
+                if (willIdleL == false && willIdleR == true)
                 {
                     sword[1].SetTrigger("isAttacking");
                     isAttacking = true;
                     Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[1].position, attackRange, whatIsEnemies);
-                    for (int i = 0; i < enemiesToDamage.Length; i++)
-                    {
-                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
-                    }
-                }
-
-                if (willIdleB == false && willIdleL == true && willIdleR == false)
-                {
-                    sword[2].SetTrigger("isAttacking");
-                    isAttacking = true;
-                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[2].position, attackRange, whatIsEnemies);
-                    for (int i = 0; i < enemiesToDamage.Length; i++)
-                    {
-                        enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
-                    }
-                }
-
-                if (willIdleB == false && willIdleL == false && willIdleR == true)
-                {
-                    sword[3].SetTrigger("isAttacking");
-                    isAttacking = true;
-                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos[3].position, attackRange, whatIsEnemies);
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
                         enemiesToDamage[i].GetComponent<Greed_Enemy>().TakeDamage(damage);
@@ -292,8 +231,6 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos[0].position, attackRange);
         Gizmos.DrawWireSphere(attackPos[1].position, attackRange);
-        Gizmos.DrawWireSphere(attackPos[2].position, attackRange);
-        Gizmos.DrawWireSphere(attackPos[3].position, attackRange);
         
     }
 

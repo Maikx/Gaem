@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleF
+  m_Name: WalkingR
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,10 +20,10 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -7145424467197902211, guid: 0a89c47bc413eb741939bb3246bb775d,
+      value: {fileID: 879485462774779094, guid: 160505c7ce6b92247829d1116f06cf3e,
         type: 3}
     - time: 0.083333336
-      value: {fileID: 2562320723469783038, guid: 0a89c47bc413eb741939bb3246bb775d,
+      value: {fileID: -7867215378830155447, guid: 160505c7ce6b92247829d1116f06cf3e,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -44,8 +44,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -7145424467197902211, guid: 0a89c47bc413eb741939bb3246bb775d, type: 3}
-    - {fileID: 2562320723469783038, guid: 0a89c47bc413eb741939bb3246bb775d, type: 3}
+    - {fileID: 879485462774779094, guid: 160505c7ce6b92247829d1116f06cf3e, type: 3}
+    - {fileID: -7867215378830155447, guid: 160505c7ce6b92247829d1116f06cf3e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: f63466d67f6ec95418e354cd257ec974
+guid: 160505c7ce6b92247829d1116f06cf3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7536251372164244329
-    second: Walking_B_0
+      213: 879485462774779094
+    second: Pattius_Walking_R_0
   - first:
-      213: 73028281085326779
-    second: Walking_B_1
+      213: -7867215378830155447
+    second: Pattius_Walking_R_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,11 +89,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walking_B_0
+      name: Pattius_Walking_R_0
       rect:
         serializedVersion: 2
         x: 0
@@ -107,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79c99184e4bd96790800000000000000
-      internalID: -7536251372164244329
+      spriteID: 6dc8fc16e5f843c00800000000000000
+      internalID: 879485462774779094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking_B_1
+      name: Pattius_Walking_R_1
       rect:
         serializedVersion: 2
         x: 32
@@ -128,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb5f5a0b5d2730100800000000000000
-      internalID: 73028281085326779
+      spriteID: 941a6559b4902d290800000000000000
+      internalID: -7867215378830155447
       vertices: []
       indices: 
       edges: []
