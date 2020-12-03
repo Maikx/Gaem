@@ -94,23 +94,34 @@ public class Player : MonoBehaviour
 
     public void CheckAnimation()
     {
-            if(isMoving == false && willIdleL == true)
+            if (isMoving == false && willIdleL == true)
+            {
             animPlayer.SetBool("isIdleLeft", true);
+            animPlayer.SetFloat("Horizontal", -1);
+            }
 
             else
             animPlayer.SetBool("isIdleLeft", false);
 
-            if (isMoving == true && willIdleL == true)
-            animPlayer.SetBool("isWalkingLeft", true);
+            if (isMoving == true)
+            animPlayer.SetBool("isWalking", true);
+            else
+            animPlayer.SetBool("isWalking", false);
 
             if (isMoving == false && willIdleR == true)
+            {
             animPlayer.SetBool("isIdleRight", true);
+            animPlayer.SetFloat("Horizontal", 1);
+            }
 
             else
             animPlayer.SetBool("isIdleRight", false);
 
+            if(isMoving == true && willIdleL == true)
+            animPlayer.SetFloat("Horizontal", -1);
+        
             if (isMoving == true && willIdleR == true)
-            animPlayer.SetBool("isWalkingRight", true);
+            animPlayer.SetFloat("Horizontal", 1);
     }
     
     void Boundaries()

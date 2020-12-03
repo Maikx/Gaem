@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 670641d1834d3de49b070d5a10ffe0ff
+guid: 6f47a88f9b11af442b05ca2aa2b50200
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4335085193749039138
-    second: Walking_R_0
+      213: 4670402897568802836
+    second: WalkingL_0
   - first:
-      213: -6491915510248507859
-    second: Walking_R_1
+      213: 3604265010585391256
+    second: WalkingL_1
+  - first:
+      213: 3544576915550436257
+    second: WalkingL_2
+  - first:
+      213: -2861583509829785389
+    second: WalkingL_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,17 +95,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walking_R_0
+      name: WalkingL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 26
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed7788b0cfea6d3c0800000000000000
-      internalID: -4335085193749039138
+      spriteID: 4182b83c0ba90d040800000000000000
+      internalID: 4670402897568802836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking_R_1
+      name: WalkingL_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 26
         y: 0
-        width: 32
-        height: 32
+        width: 26
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +146,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d26f9c33d3518e5a0800000000000000
-      internalID: -6491915510248507859
+      spriteID: 890df405eebe40230800000000000000
+      internalID: 3604265010585391256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abfe6abcedd03130800000000000000
+      internalID: 3544576915550436257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8ea7985fc9948d0800000000000000
+      internalID: -2861583509829785389
       vertices: []
       indices: 
       edges: []
