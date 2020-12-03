@@ -1314,12 +1314,6 @@ MonoBehaviour:
   sword:
   - {fileID: 690725435}
   - {fileID: 919106232}
-  animCurrent:
-  - {fileID: 9100000, guid: ea616f0362188ee4f9b548352f1bbe45, type: 2}
-  - {fileID: 9100000, guid: e5285b934c7be6e4e95b4f3890d9355a, type: 2}
-  - {fileID: 9100000, guid: a441395e45413d542b8885fe05b1ce62, type: 2}
-  - {fileID: 9100000, guid: d99bc03fb6570a940a10c6fbc2f247ba, type: 2}
-  - {fileID: 9100000, guid: c9a277c05c1cd7c4cbccbfbe3c7a9273, type: 2}
   startTimeBtwAttack: 0.3
   isAttacking: 0
   attackPos:
@@ -1330,8 +1324,9 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 256
+  direction: {x: 0, y: 0, z: 0}
   health: 100
-  character: 0
+  character: 2
   movementSpeed: 5
   playerHigh: 0.5
   playerLow: -4
@@ -1398,7 +1393,7 @@ Animator:
   m_GameObject: {fileID: 1304960278}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a441395e45413d542b8885fe05b1ce62, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

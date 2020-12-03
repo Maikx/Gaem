@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rB;
     public Animator[] sword;
 
-    public RuntimeAnimatorController[] animCurrent;
-
     private GameManager gm;
 
     private float timeBtwAttack;
@@ -20,6 +18,7 @@ public class Player : MonoBehaviour
     public float attackRange;
     public int damage;
     public LayerMask whatIsEnemies;
+    public Vector3 direction;
 
     public float health;
     public int character;
@@ -46,6 +45,8 @@ public class Player : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         rB = GetComponent<Rigidbody2D>();
         willIdleR = true;
+        animPlayer.SetInteger("Character", character);
+
     }
 
     // Update is called once per frame
@@ -54,37 +55,7 @@ public class Player : MonoBehaviour
         CheckAnimation();
         CheckDirection();
         Boundaries();
-        PickCharacter();
         Attack();
-    }
-
-    void PickCharacter()
-    {
-        if (character == 0)
-        {
-            animPlayer.runtimeAnimatorController = animCurrent[0];
-        }
-
-        if (character == 1)
-        {
-            animPlayer.runtimeAnimatorController = animCurrent[1];
-        }
-
-        if (character == 2)
-        {
-            animPlayer.runtimeAnimatorController = animCurrent[2];
-        }
-
-        if (character == 3)
-        {
-            animPlayer.runtimeAnimatorController = animCurrent[3];
-        }
-
-        if (character == 4)
-        {
-            animPlayer.runtimeAnimatorController = animCurrent[4];
-        }
-
     }
 
     void FixedUpdate()
@@ -92,7 +63,7 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         HandleMovement(horizontal, vertical);
-        HandleMovement(horizontal, vertical);
+        animPlayer.SetFloat("Horizontal", horizontal);
     }
 
     void HandleMovement(float horizontal, float vertical)
@@ -123,24 +94,6 @@ public class Player : MonoBehaviour
 
     public void CheckAnimation()
     {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                animPlayer.SetBool("isWalkingLeft", true);
-            }
-            else
-            {
-                animPlayer.SetBool("isWalkingLeft", false);
-            }
-
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                animPlayer.SetBool("isWalkingRight", true);
-            }
-            else
-            {
-                animPlayer.SetBool("isWalkingRight", false);
-            }
-
             if(isMoving == false && willIdleL == true)
             animPlayer.SetBool("isIdleLeft", true);
 
