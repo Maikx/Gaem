@@ -20,7 +20,11 @@ public class Player : MonoBehaviour
     public LayerMask whatIsEnemies;
     public Vector3 direction;
 
-    public float health;
+    public int maxHealth;
+    public int currentHealth;
+    public HealthBar healthBar;
+
+
     public int character;
     public float movementSpeed;
 
@@ -46,7 +50,8 @@ public class Player : MonoBehaviour
         rB = GetComponent<Rigidbody2D>();
         willIdleR = true;
         animPlayer.SetInteger("Character", character);
-
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -138,9 +143,10 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
         animPlayer.SetTrigger("isHurt");
-        if (health <= 0)
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             Debug.Log("Dead");
         }
