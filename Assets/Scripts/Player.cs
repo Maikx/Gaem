@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
 
-
     public int character;
+    public int currentcharacter;
+
+
     public float movementSpeed;
 
     public float playerHigh;
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour
         animPlayer.SetInteger("Character", character);
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        currentcharacter = character;
     }
 
     // Update is called once per frame
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour
     {
         CheckAnimation();
         CheckDirection();
+        ChangeCharacter();
         Boundaries();
         Attack();
     }
@@ -95,6 +99,31 @@ public class Player : MonoBehaviour
             isMoving = true;
         else
             isMoving = false;
+    }
+
+    void ChangeCharacter()
+    {
+        if(currentcharacter != character)
+        {
+            animPlayer.SetTrigger("Change");
+            animPlayer.SetInteger("Character", character);
+            currentcharacter = character;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+            character = 0;
+
+        if (Input.GetKeyDown(KeyCode.F2))
+            character = 1;
+
+        if (Input.GetKeyDown(KeyCode.F3))
+            character = 2;
+
+        if (Input.GetKeyDown(KeyCode.F4))
+            character = 3;
+
+        if (Input.GetKeyDown(KeyCode.F5))
+            character = 4;
     }
 
     public void CheckAnimation()

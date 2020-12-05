@@ -3,11 +3,29 @@ guid: 1db2232ddd66cb44d8a714852fd6373b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3306311186246052851
-    second: Pattius_Walking_L_0
+      213: 4670402897568802836
+    second: WalkingL_0
   - first:
-      213: -5007900590573771490
-    second: Pattius_Walking_L_1
+      213: 3604265010585391256
+    second: WalkingL_1
+  - first:
+      213: 3544576915550436257
+    second: WalkingL_2
+  - first:
+      213: -2861583509829785389
+    second: WalkingL_3
+  - first:
+      213: 4961827189190239855
+    second: WalkingL_4
+  - first:
+      213: -1885953534110531067
+    second: WalkingL_5
+  - first:
+      213: -3800237673899858166
+    second: WalkingL_6
+  - first:
+      213: -6537836671898692452
+    second: WalkingL_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -51,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pattius_Walking_L_0
+      name: WalkingL_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 30
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0457e26e7f9d12d0800000000000000
-      internalID: -3306311186246052851
+      spriteID: 4182b83c0ba90d040800000000000000
+      internalID: 4670402897568802836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pattius_Walking_L_1
+      name: WalkingL_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 30
         y: 0
-        width: 32
-        height: 32
+        width: 30
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +158,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e15a16422fc508ab0800000000000000
-      internalID: -5007900590573771490
+      spriteID: 890df405eebe40230800000000000000
+      internalID: 3604265010585391256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abfe6abcedd03130800000000000000
+      internalID: 3544576915550436257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_3
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8ea7985fc9948d0800000000000000
+      internalID: -2861583509829785389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_4
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f662f882a83fbd440800000000000000
+      internalID: 4961827189190239855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5020370c04fb3d5e0800000000000000
+      internalID: -1885953534110531067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07642958f7d24bc0800000000000000
+      internalID: -3800237673899858166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingL_7
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94d4f39f20f445a0800000000000000
+      internalID: -6537836671898692452
       vertices: []
       indices: 
       edges: []
