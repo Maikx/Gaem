@@ -1534,6 +1534,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1141346605}
   character: 0
+  currentcharacter: 0
   movementSpeed: 5
   playerHigh: 0.5
   playerLow: -4
